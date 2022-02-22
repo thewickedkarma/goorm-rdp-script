@@ -18,6 +18,7 @@ class CRD:
         self.installCRD()
         self.installDesktopEnvironment()
         self.installGoogleChorme()
+        self.installcustomwall()
         self.finish(user)
         print("\nRDP created succesfully move to https://remotedesktop.google.com/access")
     @staticmethod
@@ -43,6 +44,11 @@ class CRD:
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
         subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
+    @staticmethod
+    def installcustomwall():
+        print("Installing customizations")
+        os.system("wget -O ~/Pictures https://w.wallhaven.cc/full/9m/wallhaven-9m7l2k.jpg")
+        os.system("xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s ~/Pictures/wallhaven-9m7l2k.jpg")
     @staticmethod
     def finish(user):
         print("Finalizing")
