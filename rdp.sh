@@ -8,7 +8,7 @@ read -p $' ┌─[ Choose a password:]─[~]
  └──╼ ~ ' password
 useradd -m $username
 adduser $username sudo
-echo '$username:$password' | sudo chpasswd
+echo $username:$password | sudo chpasswd
 sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
 read -p $' ┌─[ Paste the Chrome desktop command you copied :]─[~]
 └──╼ ~ ' CRP
@@ -27,10 +27,12 @@ systemctl disable lightdm.service
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt install -f 
-mkdir -p /home/{user}/.config/autostart
-chown $user:$user /home/$user/.config
-adduser $user chrome-remote-desktop
+mkdir -p /home/$username/.config/autostart
+
+chown $username:$username /home/$user/.config
+chmod +x ~/
+adduser $username chrome-remote-desktop
 command=$CRP --pin=$Pin
-su - $user -c '$command'
+su - $user -c \"$command\"
 sudo service chrome-remote-desktop start
 echo "RDP created succesfully move to https://remotedesktop.google.com/access"
