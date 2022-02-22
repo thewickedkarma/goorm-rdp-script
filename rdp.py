@@ -44,6 +44,9 @@ class CRD:
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
         subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
+        os.system("wget https://dl1.pling.com/api/files/download/j/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTUzMDc3NDYwMCwidSI6bnVsbCwibHQiOiJkb3dubG9hZCIsInMiOiIzM2ExNWQ3YWU0MTNhMTE2ZWJlY2E4YzZmOWFmYjhkNTE0Y2NmMmU0Y2U3ZTUzZDUyOWU0NDQ5YjY1N2Y3YmQ3MjMxNTIwZDRlZGE5ZjhiMWRmYjZiOTQ2Y2ZiNzU0OGJiODFhYjcxNTZhYTZiYWQ4M2UwYjA2MmEyMTY3NzcyNCIsInQiOjE2NDU1MTM0OTcsInN0ZnAiOiIyNGFhYWZiMWVhZmU2ZjU1YzUwMTI3ZmViMGJmOTdkNCIsInN0aXAiOiIzNS4xNTQuMTY2LjE1NSJ9.pfHVPOG-fhRwKRsVdNWiyaoepEIsw-3wqAosQcbwAE4/ocs-url_3.1.0-0ubuntu1_amd64.deb")
+        os.system("dpkg -i ocs-url_3.1.0-0ubuntu1_amd64.deb")
+        os.system("sudo apt install -f -y")
 
     @staticmethod
     def finish(user):
