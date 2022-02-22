@@ -18,7 +18,6 @@ class CRD:
         self.installCRD()
         self.installDesktopEnvironment()
         self.installGoogleChorme()
-        self.installcustomwall()
         self.finish(user)
         print("\nRDP created succesfully move to https://remotedesktop.google.com/access")
     @staticmethod
