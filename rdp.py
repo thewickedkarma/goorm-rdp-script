@@ -44,11 +44,7 @@ class CRD:
         subprocess.run(["wget", "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
         subprocess.run(["dpkg", "--install", "google-chrome-stable_current_amd64.deb"], stdout=subprocess.PIPE)
         subprocess.run(['apt', 'install', '--assume-yes', '--fix-broken'], stdout=subprocess.PIPE)
-    @staticmethod
-    def installcustomwall():
-        print("Installing customizations")
-        os.system("wget -O ~/Pictures https://w.wallhaven.cc/full/9m/wallhaven-9m7l2k.jpg")
-        os.system("xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s ~/Pictures/wallhaven-9m7l2k.jpg")
+
     @staticmethod
     def finish(user):
         print("Finalizing")
@@ -69,6 +65,8 @@ X-GNOME-Autostart-enabled=true""".format(link)
             os.system(f"chown {user}:{user} /home/{user}/.config")
 
         os.system(f"adduser {user} chrome-remote-desktop")
+        os.system("wget -O ~/Pictures/wall.jpg https://w.wallhaven.cc/full/9m/wallhaven-9m7l2k.jpg")
+        os.system("xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/workspace0/last-image -s ~/Pictures/wall.jpg")
         command = f"{CRP} --pin={Pin}"
         os.system(f"su - {user} -c '{command}'")
         os.system("service chrome-remote-desktop start")
